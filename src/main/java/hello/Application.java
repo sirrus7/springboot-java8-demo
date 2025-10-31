@@ -73,7 +73,7 @@ public class Application implements CommandLineRunner {
                 .collect(Collectors.toList());
 
         // Use a Java 8 stream to print out each tuple of the list
-        splitUpNames.forEach(name -> log.info(String.format("Inserting customer record for %s %s", name[0], name[1])));
+        splitUpNames.forEach(name -> log.info("Inserting customer record for %s %s".formatted(name[0], name[1])));
 
         // Uses JdbcTemplate's batchUpdate operation to bulk load data
         jdbcTemplate.batchUpdate("INSERT INTO customers(first_name, last_name) VALUES (?,?)", splitUpNames);
