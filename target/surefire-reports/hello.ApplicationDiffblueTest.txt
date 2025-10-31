@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: hello.ApplicationDiffblueTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.044 s -- in hello.ApplicationDiffblueTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.745 s -- in hello.ApplicationDiffblueTest
