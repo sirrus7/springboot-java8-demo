@@ -9,16 +9,13 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
-@ContextConfiguration(classes = {TopicService.class})
+@SpringJUnitConfig(classes = {TopicService.class})
 @DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
-@ExtendWith(SpringExtension.class)
 class TopicServiceDiffblueTest {
   @Autowired private TopicService topicService;
 
@@ -41,7 +38,7 @@ class TopicServiceDiffblueTest {
     Topic getResult = actualAllTopics.get(1);
     assertEquals("Core Java", getResult.getSubjectName());
     assertEquals("Java Description", getResult.getSubjectDescription());
-    Topic getResult2 = actualAllTopics.get(0);
+    Topic getResult2 = actualAllTopics.getFirst();
     assertEquals("Spring Framework Description", getResult2.getSubjectDescription());
     assertEquals("Spring Framework", getResult2.getSubjectName());
     assertEquals("java", getResult.getId());
@@ -153,7 +150,7 @@ class TopicServiceDiffblueTest {
     // Assert
     List<Topic> allTopics = topicService.getAllTopics();
     assertEquals(3, allTopics.size());
-    assertSame(topic, allTopics.get(0));
+    assertSame(topic, allTopics.getFirst());
   }
 
   /**
@@ -228,7 +225,7 @@ class TopicServiceDiffblueTest {
 
     // Assert
     assertEquals(1, actualFilterMinimumLengthForIdResult.size());
-    Topic getResult = actualFilterMinimumLengthForIdResult.get(0);
+    Topic getResult = actualFilterMinimumLengthForIdResult.getFirst();
     assertEquals("javascript Framework Description", getResult.getSubjectDescription());
     assertEquals("javascript Framework", getResult.getSubjectName());
     assertEquals("javascript", getResult.getId());
@@ -258,7 +255,7 @@ class TopicServiceDiffblueTest {
     Topic getResult = actualFilterMinimumLengthForIdResult.get(1);
     assertEquals("Core Java", getResult.getSubjectName());
     assertEquals("Java Description", getResult.getSubjectDescription());
-    Topic getResult2 = actualFilterMinimumLengthForIdResult.get(0);
+    Topic getResult2 = actualFilterMinimumLengthForIdResult.getFirst();
     assertEquals("Spring Framework Description", getResult2.getSubjectDescription());
     assertEquals("Spring Framework", getResult2.getSubjectName());
     assertEquals("java", getResult.getId());
@@ -285,7 +282,7 @@ class TopicServiceDiffblueTest {
 
     // Assert
     assertEquals(3, actualSortTopicsWithIDResult.size());
-    Topic getResult = actualSortTopicsWithIDResult.get(0);
+    Topic getResult = actualSortTopicsWithIDResult.getFirst();
     assertEquals("Core Java", getResult.getSubjectName());
     assertEquals("Java Description", getResult.getSubjectDescription());
     Topic getResult2 = actualSortTopicsWithIDResult.get(2);
