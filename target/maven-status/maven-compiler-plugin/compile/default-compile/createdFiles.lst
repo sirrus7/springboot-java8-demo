@@ -1,0 +1,13 @@
+hello/model/Greeting.class
+hello/controller/GreetingController.class
+hello/controller/TopicController.class
+hello/model/Quote.class
+hello/model/Value.class
+hello/declaration/CustomPredicate.class
+hello/model/SimpleTimeClient.class
+hello/declaration/TimeClient.class
+hello/model/Customer.class
+hello/service/TopicService.class
+hello/Application.class
+hello/model/Topic.class
+hello/controller/HelloController.class

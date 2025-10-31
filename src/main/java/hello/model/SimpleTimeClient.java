@@ -6,7 +6,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public class SimpleTimeClient  implements TimeClient {
+/**
+ * SimpleTimeClient constructor creates a new instance with the current date and time
+ */
+public class SimpleTimeClient implements TimeClient {
     private LocalDateTime dateAndTime;
 
     public SimpleTimeClient() {
@@ -43,5 +46,4 @@ public class SimpleTimeClient  implements TimeClient {
     public String toString() {
         return dateAndTime.toString();
     }
-
 }
