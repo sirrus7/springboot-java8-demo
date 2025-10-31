@@ -72,8 +72,7 @@ class ApplicationDiffblueTest {
     quote.setValue(value);
 
     RestTemplate restTemplate = mock(RestTemplate.class);
-    when(restTemplate.getForObject(
-            Mockito.<String>any(), eq(Quote.class), (Object[]) Mockito.any()))
+    when(restTemplate.getForObject(Mockito.<String>any(), eq(Quote.class), isA(Object[].class)))
         .thenReturn(quote);
     String[] args = new String[] {"Args"};
 
@@ -85,7 +84,7 @@ class ApplicationDiffblueTest {
         .getForObject(
             eq("http://gturnquist-quoters.cfapps.io/api/random"),
             isA(Class.class),
-            (Object[]) Mockito.any());
+            isA(Object[].class));
     assertArrayEquals(new String[] {"Args"}, args);
   }
 
