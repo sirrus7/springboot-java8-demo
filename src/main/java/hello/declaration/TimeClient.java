@@ -8,11 +8,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-
 /**
  * Implementing Defaults and Static Functions in Interface
  */
-
 public interface TimeClient {
 
     void setTime(int hour, int minute, int second);
@@ -20,7 +18,7 @@ public interface TimeClient {
     void setDateAndTime(int day, int month, int year, int hour, int minute, int second);
     LocalDateTime getLocalDateTime();
 
-    static ZoneId getZoneId (String zoneString) {
+    static ZoneId getZoneId(String zoneString) {
         try {
             return ZoneId.of(zoneString);
         } catch (DateTimeException e) {
@@ -30,9 +28,7 @@ public interface TimeClient {
         }
     }
 
-
     default ZonedDateTime getZonedDateTime(String zoneString) {
         return ZonedDateTime.of(getLocalDateTime(), getZoneId(zoneString));
     }
-
 }

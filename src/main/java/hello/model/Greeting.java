@@ -1,6 +1,9 @@
 package hello.model;
 
-public class Greeting {
+/**
+ * Greeting class constructor creates a greeting with an id and content message.
+ */
+public final class Greeting {
     private final long id;
     private final String content;
 
@@ -9,9 +12,7 @@ public class Greeting {
         this.content = content;
     }
 
-
     public long getId() {
-
         return id;
     }
 

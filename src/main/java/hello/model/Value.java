@@ -1,5 +1,8 @@
 package hello.model;
 
+/**
+ * Value class constructor creates an instance to hold id and quote data
+ */
 public class Value {
     private Long id;
     private String quote;
