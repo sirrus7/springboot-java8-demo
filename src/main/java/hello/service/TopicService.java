@@ -8,15 +8,22 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.OptionalInt;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+/**
+ * Service class for managing topics with various stream operations and file handling capabilities.
+ * Provides CRUD operations and demonstrates modern Java features like streams, lambdas, and NIO.
+ */
 @Service
 public class TopicService {
-
 
     private List<Topic> topics = new ArrayList<>(Arrays.asList(
             new Topic("spring", "Spring Framework", "Spring Framework Description"),
@@ -29,7 +36,7 @@ public class TopicService {
     }
 
     /**
-     * Strean Example
+     * Stream Example
      *
      * @param id
      * @return
@@ -49,12 +56,15 @@ public class TopicService {
      * @param topic
      */
     public void updateTopic(String id, Topic topic) {
-        OptionalInt indexOfElement = IntStream.range(0, topics.size()).filter(index -> id.equals(topics.get(index).getId())).findFirst();
-        if (indexOfElement.isPresent()) topics.set(indexOfElement.getAsInt(), topic);
+        OptionalInt indexOfElement = IntStream.range(0, topics.size())
+                .filter(index -> id.equals(topics.get(index).getId())).findFirst();
+        if (indexOfElement.isPresent()) {
+            topics.set(indexOfElement.getAsInt(), topic);
+        }
     }
 
     /**
-     * Lamda Expressions
+     * Lambda Expressions
      *
      * @param id
      */
@@ -63,7 +73,7 @@ public class TopicService {
     }
 
     /**
-     * Calling fucntional Interface
+     * Calling functional Interface
      *
      * @param minLength
      * @return
@@ -72,7 +82,6 @@ public class TopicService {
         return printTopicsWithPredicate(topics, topic -> topic.getId().length() > minLength);
     }
 
-
     /**
      * Functional Interface example With ForEach
      *
@@ -80,14 +89,16 @@ public class TopicService {
      * @param tester
      * @return
      */
-    private static List<Topic> printTopicsWithPredicate(List<Topic> topicList, CustomPredicate<Topic> tester) {
+    private static List<Topic> printTopicsWithPredicate(List<Topic> topicList, 
+            CustomPredicate<Topic> tester) {
         List<Topic> resultTopic = new ArrayList<>();
         topicList.forEach(topic -> {
-            if (tester.test(topic)) resultTopic.add(topic);
+            if (tester.test(topic)) {
+                resultTopic.add(topic);
+            }
         });
         return resultTopic;
     }
-
 
     /**
      * Using Comparator to sort
@@ -99,17 +110,16 @@ public class TopicService {
         return topics;
     }
 
-
     /**
      * Join List of Strings
      *
      * @return
      */
     public String returnAllTopicIDWithStringSlicing() {
-        List<String> topicIds = topics.stream().map(topic -> topic.getId()).collect(Collectors.toList());
+        List<String> topicIds = topics.stream().map(topic -> topic.getId())
+                .collect(Collectors.toList());
         return String.join(":", topicIds);
     }
-
 
     /**
      * Use of MapToObject and distinct
@@ -123,7 +133,6 @@ public class TopicService {
                 .sorted()
                 .collect(Collectors.joining());
     }
-
 
     /**
      * Use of Pattern Class with stream
@@ -139,14 +148,14 @@ public class TopicService {
                 .collect(Collectors.joining(":"));
     }
 
-
     /**
      * Apply Regex as Predicate with Stream
      * @return
      */
     public String findIdHavingCharacter() {
         Pattern pattern = Pattern.compile(".*g.*");
-        Object[] topicIdObjectList = topics.stream().map(topic -> topic.getId()).collect(Collectors.toList()).toArray();
+        Object[] topicIdObjectList = topics.stream().map(topic -> topic.getId())
+                .collect(Collectors.toList()).toArray();
 
         String[] topicIdList = Arrays.stream(topicIdObjectList).toArray(String[]::new);
 
@@ -155,7 +164,6 @@ public class TopicService {
                 .collect(Collectors.toList())
                 .toString();
     }
-
 
     /**
      * NIO Java API
@@ -196,7 +204,6 @@ public class TopicService {
         }
     }
 
-
     /**
      * Using Files.Walk Function to find File
      * @return
@@ -216,7 +223,6 @@ public class TopicService {
         }
     }
 
-
     /**
      * Use BufferedReader with Stream functions
      * @return
@@ -227,13 +233,12 @@ public class TopicService {
         try (BufferedReader reader = Files.newBufferedReader(path)) {
             String lines = reader
                     .lines()
-                    .filter(line->line.contains("print"))
-                    .map(line->line.substring("print".length()))
+                    .filter(line -> line.contains("print"))
+                    .map(line -> line.substring("print".length()))
                     .collect(Collectors.joining(","));
-            return  lines;
+            return lines;
         } catch (IOException e) {
             return " IO exception ";
         }
     }
-
 }

@@ -1,6 +1,9 @@
 package hello.model;
 
-
+/**
+ * Topic class represents a subject with an ID, name, and description.
+ * Constructor initializes a Topic with the provided id, subjectName, and subjectDescription.
+ */
 public class Topic {
     private String id;
     private String subjectName;
@@ -39,5 +42,4 @@ public class Topic {
         this.subjectName = subjectName;
         this.subjectDescription = subjectDescription;
     }
-
 }

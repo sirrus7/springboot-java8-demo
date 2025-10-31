@@ -1,8 +1,15 @@
 package hello.model;
 
+/**
+ * Quote class constructor creates a Quote object with type and value properties.
+ */
 public class Quote {
     private String type;
     private Value value;
+
+    public Quote() {
+
+    }
 
     @Override
     public String toString() {
@@ -26,9 +33,5 @@ public class Quote {
 
     public void setValue(Value value) {
         this.value = value;
-    }
-
-    public Quote() {
-
     }
 }
