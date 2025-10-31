@@ -1,8 +1,13 @@
 package hello.model;
 
+/**
+ * Customer class representing a customer entity with id, first name, and last name.
+ * Constructor initializes a customer with the provided id, firstName, and lastName.
+ */
 public class Customer {
     private long id;
-    private String firstName, lastName;
+    private String firstName;
+    private String lastName;
 
     @Override
     public String toString() {
